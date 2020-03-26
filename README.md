@@ -23,6 +23,3 @@ Before you create a docker image, you will need to change the docker.image prope
 
 ### /kronos/swagger-ui.html
 Once you start the application all API docs should be available at this URL. 
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)

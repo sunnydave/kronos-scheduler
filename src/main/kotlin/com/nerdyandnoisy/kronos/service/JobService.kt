@@ -55,7 +55,7 @@ class JobService {
 
         val jobDetail = createJob(getJobClass(jobInfo.jobClass), false, context, jobKey, groupKey,jobInfo.description)
 
-        val cronTriggerBean = createCronTrigger(jobKey,groupKey, jobInfo.repeatTime, jobInfo.cronExpression, SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW,jobInfo.description)
+        val cronTriggerBean = createCronTrigger(jobKey,groupKey, jobInfo.repeatTime, jobInfo.cronExpression!!, SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW,jobInfo.description)
         jobDetail?.jobDataMap?.put("url",jobInfo.jobData.url)
         jobDetail?.jobDataMap?.put("method",jobInfo.jobData.method)
         jobDetail?.jobDataMap?.put("body",jobInfo.jobData.body)
@@ -85,7 +85,7 @@ class JobService {
 
     fun updateCronJob(jobInfo: SchedulerJobInfo):Boolean{
         try {
-            val newTrigger = createCronTrigger(jobInfo.jobName,jobInfo.jobGroup, jobInfo.repeatTime, jobInfo.cronExpression, SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW,jobInfo.description)
+            val newTrigger = createCronTrigger(jobInfo.jobName,jobInfo.jobGroup, jobInfo.repeatTime, jobInfo.cronExpression!!, SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW,jobInfo.description)
             schedulerFactoryBean.scheduler.rescheduleJob(TriggerKey.triggerKey(jobInfo.jobName,jobInfo.jobGroup), newTrigger)
             return true
         }catch (exception: SchedulerException){

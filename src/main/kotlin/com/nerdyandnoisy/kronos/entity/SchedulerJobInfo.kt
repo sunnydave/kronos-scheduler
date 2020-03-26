@@ -2,6 +2,7 @@ package com.nerdyandnoisy.kronos.entity
 
 import java.io.Serializable
 import java.util.*
+import kotlin.collections.HashMap
 
 
 data class SchedulerJobInfo (
@@ -9,10 +10,10 @@ data class SchedulerJobInfo (
         val jobGroup: String,
         val jobClass: String,
         val description: String,
-        val cronExpression: String,
+        val cronExpression: String = "",
         val repeatTime: Date,
         val cronJob: Boolean = false,
-        val jobData: JobData
+        val jobData: JobData = JobData("","", emptyMap())
 )
 
 data class JobData(
